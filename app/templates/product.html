@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
+{% block title %} {{product_id}} - {{product_name}} {% endblock %}
 {% block content %}
-    
+    {{opinions|safe}}
+{% block script %}
+
+<script>
+  let table =  new DataTable('#opinions',{
+    //options
+  });
+</script>
+
 {% endblock %}

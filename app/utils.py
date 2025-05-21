@@ -1,3 +1,5 @@
+
+
 selectors = {
     "opinion_id": (None, 'data-entry-id'),
     "author": ("span.user-post__author-name",),

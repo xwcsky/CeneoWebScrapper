@@ -1,3 +1,345 @@
 h1 {
-    color: #ff6400;
+    color: radial-gradient(circle,rgba(252, 70, 107, 1) 0%, rgba(63, 94, 251, 1) 100%);
+    font-family: 'MojaCzcionka2', sans-serif; 
+
 }
+@font-face {
+    font-family: 'MojaCzcionka1'; 
+    src: url('Another\ Danger\ Slanted\ -\ Demo.otf') format('opentype'); 
+    font-weight: normal; 
+    font-style: normal; 
+  }
+ @font-face {
+    font-family: 'MojaCzcionka2';
+    src: url('shlop\ rg.otf') format('opentype'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+  
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+ /* Animacja dla obrotu strony */
+@keyframes rotatePage {
+    0% {
+      transform: rotate(0deg);
+    }
+    33% {
+      transform: rotate(120deg);
+    }
+    66% {
+      transform: rotate(240deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Styl przycisku */
+  button.rotate-button {
+    background-color: #D4AF37;
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button.rotate-button:hover {
+    background-color: #c5a12d;
+    transform: translateY(-2px);
+  }
+  
+  button.rotate-button:active {
+    transform: translateY(2px);
+  }
+  
+  /* Kiedy kliknięto przycisk, strona zacznie się obracać */
+  body.rotate {
+    animation: rotatePage 3s linear; /* 3s to czas trwania, 3 obroty */
+  }
+  
+  
+  /* body {
+    font-family: 'Poppins', sans-serif; 
+    background: #e8e6ff;
+    background: linear-gradient(90deg, rgba(232, 230, 255, 1) 0%, rgba(102, 221, 237, 1) 35%, rgba(193, 235, 245, 1) 100%);
+    color: #333;
+    line-height: 1.6;
+    padding: 0 20px;
+    animation: rotateBackground 30s linear infinite; 
+  } */
+  body {
+    font-family: 'Poppins', sans-serif; 
+    background: #e8e6ff;
+background: linear-gradient(90deg, rgba(232, 230, 255, 1) 0%, rgba(102, 221, 237, 1) 35%, rgba(193, 235, 245, 1) 100%);
+    color: #333;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+  .container{
+    background-color: #f9f9f9 ;
+  }
+  
+  
+  header {
+    background: #201c9c;
+background: linear-gradient(90deg, rgba(32, 28, 156, 1) 0%, rgba(52, 52, 207, 1) 35%, rgba(1, 208, 254, 1) 98%, rgba(0, 212, 255, 1) 100%);
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'MojaCzcionka2', sans-serif; 
+  }
+  
+  header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+  
+  header p {
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px 0;
+  }
+  
+  nav a {
+    margin: 0 25px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #D4AF37; 
+    transform: scale(1.1);
+  }
+  
+  
+  button {
+    background-color: #D4AF37;
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #c5a12d;
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    transform: translateY(2px);
+  }
+  
+  main {
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  main h2 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  main p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.7;
+    color: #555;
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 40px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    padding: 15px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  th {
+    background-color: #333;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  td {
+    background-color: #f9f9f9;
+    color: #555;
+  }
+  
+  tr:nth-child(even) td {
+    background-color: #f1f1f1;
+  }
+  
+  tr:hover td {
+    background-color: #e2e2e2;
+  }
+  
+  table thead th {
+    border-bottom: 2px solid #D4AF37; 
+  }
+  
+  table tbody tr td {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  footer {
+    
+    color: #fff;
+    font-family: 'MojaCzcionka2', sans-serif; 
+    letter-spacing: 4px;
+    padding: 30px 0;
+    text-align: center;
+    background: #201c9c;
+background: linear-gradient(90deg, rgba(32, 28, 156, 1) 0%, rgba(52, 52, 207, 1) 35%, rgba(1, 208, 254, 1) 98%, rgba(0, 212, 255, 1) 100%);
+  }
+  
+  footer p {
+    font-size: 1rem;
+    font-weight: 300;
+    
+  }
+  
+  
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 2.5rem;
+    }
+  
+    main h2 {
+      font-size: 2rem;
+    }
+  
+    main p {
+      font-size: 1rem;
+    }
+  
+    nav a {
+      font-size: 1rem;
+    }
+  
+    table {
+      font-size: 0.9rem;
+    }
+  }
+  
+ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+  text-align: center; 
+}
+
+li {
+  margin: 10px 20px; 
+  padding-bottom: 5px;
+}
+
+
+a {
+  text-decoration: none; 
+  color: black; 
+  font-size: 1.2rem; 
+  font-weight: 500; 
+  transition: all 0.3s ease; 
+}
+
+a:hover {
+  color: #D4AF37; 
+  transform: translateY(-5px); 
+}
+
+
+li:hover a {
+  color: #D4AF37; 
+  transform: translateY(-5px); 
+}
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  
+  .author-box {
+    background-color: #ffffff;
+    border: 2px solid #3498db;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 800px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); 
+  }
+  
+  
+  .author-box h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+  }
+  
+  
+  .author-description {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify; 
+  }
+  
+  
+  .author-description strong {
+    color: #3498db;
+    font-weight: bold;
+  }
+  
+  
+  .author-footer {
+    font-size: 1.2rem;
+    color: #777;
+    font-style: italic;
+    margin-top: 25px;
+  }
+  
+ 
+  .author-box:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .author{
+    font-family: 'MojaCzcionka1', sans-serif; 
+
+  }

@@ -2,12 +2,11 @@
 {% block title %} {{product_id}} - {{product_name}} {% endblock %}
 {% block content %}
     {{opinions|safe}}
-{% block script %}
-
+{% endblock %}
+{% block script %} 
 <script>
-  let table =  new DataTable('#opinions',{
-    //options
-  });
+    let table = new DataTable('#opinions', {
+        // options
+    });
 </script>
-
 {% endblock %}

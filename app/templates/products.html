@@ -1,5 +1,40 @@
 {% extends 'base.html' %}
-{% block title %} {% endblock %}
+{% block title %}Lista produktów{% endblock %}
 {% block content %}
-    
+<ul class="list-group">
+    {% for product in products %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a type="button" class="btn btn-ceneo" href="{{url_for('product', product_id=1523)}}">123456</a>
+            <span>{{product.product_name}}</span>
+            <span class="badge bg-primary rounded-pill">{{product.opinions.shape}}</span>
+            <span class="badge bg-success rounded-pill">{{product.opinions}}</span>
+            <span class="badge bg-danger rounded-pill"></span>
+            <span class="badge bg-ceneo rounded-pill">3,98</span>
+            <a type="button" class="btn btn-info" href="#">CSV</a>
+            <a type="button" class="btn btn-info" href="#">XLSX</a>
+            <a type="button" class="btn btn-info" href="#">JSON</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a type="button" class="btn btn-ceneo" href="{{url_for('product', product_id=1523)}}">123456</a>
+            <span>Łopata</span>
+            <span class="badge bg-primary rounded-pill">1523</span>
+            <span class="badge bg-success rounded-pill">549</span>
+            <span class="badge bg-danger rounded-pill">462</span>
+            <span class="badge bg-ceneo rounded-pill">3,98</span>
+            <a type="button" class="btn btn-info" href="#">CSV</a>
+            <a type="button" class="btn btn-info" href="#">XLSX</a>
+            <a type="button" class="btn btn-info" href="#">JSON</a>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a type="button" class="btn btn-ceneo" href="{{url_for('product', product_id=1523)}}">123456</a>
+            <span>Łopata</span>
+            <span class="badge bg-primary rounded-pill">1523</span>
+            <span class="badge bg-success rounded-pill">549</span>
+            <span class="badge bg-danger rounded-pill">462</span>
+            <span class="badge bg-ceneo rounded-pill">3,98</span>
+            <a type="button" class="btn btn-info" href="#">CSV</a>
+            <a type="button" class="btn btn-info" href="#">XLSX</a>
+            <a type="button" class="btn btn-info" href="#">JSON</a>
+        </li>
+</ul>
 {% endblock %}

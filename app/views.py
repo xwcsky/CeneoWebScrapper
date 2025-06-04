@@ -4,6 +4,7 @@ import json
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+from matplotlib import pyplot as plt
 from flask import render_template, request, redirect, url_for
 from config import headers
 from app import utils
@@ -55,11 +56,41 @@ def extract():
         os.mkdir("./app/data/opinions")
     with open(f"./app/data/opinions/{product_id}.json", "w", encoding="UTF-8") as jf:
         json.dump(all_opinions, jf, indent=4, ensure_ascii=False)
-    return redirect(url_for('product', product_id=product_id, product_name=product_name))
+
+        opinions = pd.DataFrame.from_dict(all_opinions)
+        opinions.stars = opinions.stars.apply(lambda s: s.split("/")[0].replace(",", ".")).astype(float)
+        opinions.useful = opinions.useful.astype(int)
+        opinions.unuseful = opinions.unuseful.astype(int)
+        stats ={
+            "product_id": product_id,
+            "product_name":product_name,
+            "opinions_count" : opinions.shape[0],
+            "pros_count": int(opinions.pros.astype(bool).sum()),
+            "cons_count" : int(opinions.cons.astype(bool).sum()),
+            "pros_cons_count": int(opinions.apply(lambda o: bool(o.pros) and bool(o.cons), axis=1).sum()),
+            "average_stars" : float(opinions.stars.mean()),
+            "pros" : opinions.pros.explode().dropna().value_counts().to_dict(),
+            "cons": opinions.cons.explode().dropna().value_counts().to_dict(),
+            "recommendations": opinions.recommendation.value_counts(dropna=False).reindex(['Nie polecam','Polecam', None], fill_value=0).to_dict()
+        }
+        
+        if not os.path.exists("./app/data"):
+            os.mkdir("./app/data")
+        if not os.path.exists("./app/data/products"):
+            os.mkdir("./app/data/products")
+            with open(f"./app/data/products/{product_id}.json", "w", encoding="UTF-8") as jf:
+             json.dump(all_opinions, jf, indent=4, ensure_ascii=False)
+        return redirect(url_for('product', product_id=product_id, product_name=product_name))
 
 @app.route("/products")
 def products():
-    return render_template("products.html")
+    products_files = os.listdir("./app/data/products")
+    products_list = []
+    for filename in products_files:
+        with open(f"./app/data/products/{filename}", "r",encoding="UTF-8") as jf:
+            product = json.load(jf)
+            products_list.append(product)
+    return render_template("products.html", products=products_list)
 
 @app.route("/author")
 def author():
@@ -70,3 +101,23 @@ def product(product_id):
     product_name=request.args.get('product_name')
     opinions = pd.read_json(f"./app/data/opinions/{product_id}.json")
     return render_template("product.html", product_id=product_id, product_name=product_name, opinions=opinions.to_html(table_id='opinions', classes=['display']))
+
+# @app.route("./charts/<product_id>")
+# def charst(product_id):
+#     if not os.path.exists("./app/data"):
+#         os.mkdir("./app/data")
+#     if not os.path.exists("./app/data/products"):
+#         os.mkdir("./app/data/products")
+#     product_name=request.args.get('product_name')
+#     with open(f'./app/data/products/{product_id}.json','r', encoding="UFT-8") as jf:
+#         stats = json.load(jf)
+#         recommendations = stats("recommendations")
+#         recommendations.plot.plt(
+#             label="",
+#             title="",
+#             labels="",
+#             colors="",
+#         )
+#         plt.config(f'./app/static/Images/charts/{stats["product_id"]}')
+
+#     return render_template("charset.html", product_id=product_id, product_name=product_name)

@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for
 from app import app
 import requests
 from config import headers
-from app import utiles
+from app import utils
 from bs4 import BeautifulSoup
 import json
 import os
@@ -37,8 +37,8 @@ def extract():
     response = requests.get(next_page,headers=headers)
     if response.status_code == 200:
         page_dom = BeautifulSoup(response.text, "html.parser")
-        product_name = utiles.extract_feature(page_dom,"h1")
-        opinions_count = utiles.extract_feature(page_dom,"a.product-review__link > span")
+        product_name = utils.extract_feature(page_dom,"h1")
+        opinions_count = utils.extract_feature(page_dom,"a.product-review__link > span")
         if not opinions_count:
             return render_template("extract.html",error="Dla produktu o podanym ID nie ma jeszcze żadnych opinii.")
     else:
@@ -52,12 +52,12 @@ def extract():
             opinions = page_dom.select("div.js_product-review:not(.user-post--highlight)")
             for opinion in opinions:
                 single_opinion = {
-                    key: utiles.extract_feature(opinion,*value)
-                    for key, value in utiles.selectors.items()
+                    key: utils.extract_feature(opinion,*value)
+                    for key, value in utils.selectors.items()
                 }
                 all_opinions.append(single_opinion)
             try:
-                next_page = "https://www.ceneo.pl" + utiles.extract_feature(page_dom,"a.pagination__next","href")
+                next_page = "https://www.ceneo.pl" + utils.extract_feature(page_dom,"a.pagination__next","href")
             except TypeError:
                 next_page = None
                 print("Brak kolejnej strony.")

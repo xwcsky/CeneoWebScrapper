@@ -1,6 +1,21 @@
 {% extends 'base.html' %}
-{% block title %} Pobieranie opinii o produkcie {% endblock %}
+{% block title %} {{product_id}} - {{product_name}}{% endblock %}
 {% block content %}
-    <div >
+<div class="btn-group" role="group" aria-label="Basic example">
+<a type="button" class="btn btn-ceneo" href="{{ url_for('product', product_id=product_id, product_name=product_name) }}"><i class="bi bi-arrow-90deg-down"></i></a>
+</div>
 
-    </div>
+<div class="text-center">
+   <img src="{{ url_for('static', filename='images/' + product_id + '_pie.png') }}"
+        alt="Rozkład Rekomendacji w opiniach o produkcie"
+        class="img-fluid"
+        style="max-width: 600px; width: 100%; height: auto;">
+</div>
+
+<div class="text-center mt-4">
+    <img src="{{ url_for('static', filename='images/' + product_id + '_stars_bar.png') }}"
+         alt="Liczba opinii z poszczególną liczbą gwiazdek"
+         class="img-fluid"
+         style="max-width: 600px; width: 100%; height: auto;">
+</div>
+{% endblock %}

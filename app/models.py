@@ -1,7 +1,6 @@
-class Product:
+class product:
     def __init__(self):
         pass
-
-class Opinion:
+class opinion:
     def __init__(self):
         pass
